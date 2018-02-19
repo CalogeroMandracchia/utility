@@ -5,6 +5,7 @@ const { open } = require('fs');
 const { Readable } = require('stream')
 
 
+
 class stringToStream extends Readable 
 {
     constructor(str) 

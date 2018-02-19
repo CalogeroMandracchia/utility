@@ -14,12 +14,13 @@ const hashCurried = algorithm => (input, encoding="hex") => new Promise( (resolv
 
 const sha256 = hashCurried('sha256');
 
-const main = async ([input, encoding] = []) =>
+const main = async ([input, encoding, algorithm] = []) =>
 {
     try
     {
+        const sha = hashCurried(algorithm);
         const stream = await fileExists(input) ? createReadStream(input) : new stringToStream(input);
-        const hash = await sha256(stream, encoding);
+        const hash = await sha(stream, encoding);
         console.log(hash);
     }
     catch(err)
